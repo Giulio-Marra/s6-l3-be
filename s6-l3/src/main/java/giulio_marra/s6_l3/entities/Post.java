@@ -1,10 +1,7 @@
 package giulio_marra.s6_l3.entities;
 
 import giulio_marra.s6_l3.enums.Categorie;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Post {
     @Id
+    @GeneratedValue
     private UUID uuid;
 
     private List<Categorie> categorie;
@@ -31,4 +29,13 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "autore_id")
     private Autore autore;
+
+    public Post(List<Categorie> categorie, String titolo, String cover, String contenuto, int tempo_di_lettura, Autore autore) {
+        this.categorie = categorie;
+        this.titolo = titolo;
+        this.cover = cover;
+        this.contenuto = contenuto;
+        this.tempo_di_lettura = tempo_di_lettura;
+        this.autore = autore;
+    }
 }
